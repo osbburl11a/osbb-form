@@ -1,0 +1,714 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Анкета кандидата до Правління ОСББ</title>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Manrope:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --navy: #0f2240;
+    --navy-mid: #1a3560;
+    --gold: #c8973a;
+    --gold-light: #e8b96a;
+    --cream: #f8f5ef;
+    --warm-white: #fdfcfa;
+    --text: #1a1a2e;
+    --muted: #6b7280;
+    --border: #d8cfc0;
+    --error: #c0392b;
+    --success: #27ae60;
+  }
+
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+
+  body {
+    font-family: 'Manrope', sans-serif;
+    background: var(--cream);
+    color: var(--text);
+    min-height: 100vh;
+    padding: 40px 20px 60px;
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background:
+      radial-gradient(ellipse at 10% 20%, rgba(15,34,64,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 90% 80%, rgba(200,151,58,0.08) 0%, transparent 50%);
+    pointer-events: none;
+    z-index: 0;
+  }
+
+  .container {
+    max-width: 720px;
+    margin: 0 auto;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* HEADER */
+  .header {
+    background: var(--navy);
+    border-radius: 4px 4px 0 0;
+    padding: 48px 52px 40px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    top: -60px; right: -60px;
+    width: 220px; height: 220px;
+    border: 2px solid rgba(200,151,58,0.2);
+    border-radius: 50%;
+  }
+
+  .header::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -40px;
+    width: 180px; height: 180px;
+    border: 1px solid rgba(200,151,58,0.12);
+    border-radius: 50%;
+  }
+
+  .header-badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    background: rgba(200,151,58,0.15);
+    border: 1px solid rgba(200,151,58,0.3);
+    color: var(--gold-light);
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    padding: 6px 14px;
+    border-radius: 2px;
+    margin-bottom: 24px;
+  }
+
+  .header-badge::before {
+    content: '⬡';
+    font-size: 14px;
+  }
+
+  .header h1 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 38px;
+    font-weight: 600;
+    color: #fff;
+    line-height: 1.2;
+    margin-bottom: 12px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header h1 span {
+    color: var(--gold-light);
+  }
+
+  .header-sub {
+    font-size: 14px;
+    color: rgba(255,255,255,0.6);
+    font-weight: 300;
+    letter-spacing: 0.3px;
+    position: relative;
+    z-index: 1;
+  }
+
+  .header-divider {
+    width: 48px;
+    height: 2px;
+    background: var(--gold);
+    margin: 20px 0;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* FORM BODY */
+  .form-body {
+    background: var(--warm-white);
+    padding: 48px 52px;
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+  }
+
+  /* SECTIONS */
+  .section {
+    margin-bottom: 44px;
+  }
+
+  .section-label {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 28px;
+  }
+
+  .section-num {
+    width: 28px; height: 28px;
+    background: var(--navy);
+    color: var(--gold-light);
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 15px;
+    font-weight: 700;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .section-title {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--navy);
+    letter-spacing: 0.3px;
+  }
+
+  /* FIELD */
+  .field {
+    margin-bottom: 24px;
+  }
+
+  .field label {
+    display: block;
+    font-size: 12.5px;
+    font-weight: 600;
+    color: var(--navy-mid);
+    letter-spacing: 0.8px;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+
+  .field label .req {
+    color: var(--gold);
+    margin-left: 3px;
+  }
+
+  .field label .hint {
+    font-size: 11px;
+    font-weight: 400;
+    color: var(--muted);
+    text-transform: none;
+    letter-spacing: 0;
+    margin-left: 6px;
+  }
+
+  .field input,
+  .field textarea,
+  .field select {
+    width: 100%;
+    background: #fff;
+    border: 1.5px solid var(--border);
+    border-radius: 3px;
+    padding: 13px 16px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 15px;
+    color: var(--text);
+    transition: border-color 0.2s, box-shadow 0.2s;
+    outline: none;
+    -webkit-appearance: none;
+  }
+
+  .field input:focus,
+  .field textarea:focus,
+  .field select:focus {
+    border-color: var(--navy);
+    box-shadow: 0 0 0 3px rgba(15,34,64,0.07);
+  }
+
+  .field input.error,
+  .field textarea.error {
+    border-color: var(--error);
+  }
+
+  .field textarea {
+    resize: vertical;
+    min-height: 110px;
+    line-height: 1.6;
+  }
+
+  .field-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+  }
+
+  .field-note {
+    font-size: 11.5px;
+    color: var(--muted);
+    margin-top: 6px;
+    line-height: 1.5;
+  }
+
+  .error-msg {
+    font-size: 11.5px;
+    color: var(--error);
+    margin-top: 5px;
+    display: none;
+  }
+
+  /* DEBT TOGGLE */
+  .debt-field {
+    background: #f0f4f8;
+    border: 1.5px solid #dbe4ed;
+    border-radius: 3px;
+    padding: 16px 20px;
+  }
+
+  .debt-label {
+    font-size: 13px;
+    font-weight: 500;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+
+  .radio-group {
+    display: flex;
+    gap: 20px;
+  }
+
+  .radio-opt {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    cursor: pointer;
+    font-size: 14px;
+    color: var(--text);
+  }
+
+  .radio-opt input[type="radio"] {
+    width: auto;
+    accent-color: var(--navy);
+    width: 16px; height: 16px;
+    cursor: pointer;
+  }
+
+  /* DIVIDER */
+  .section-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 40px 0;
+  }
+
+  /* CONSENT */
+  .consent-block {
+    background: rgba(15,34,64,0.04);
+    border-left: 3px solid var(--navy);
+    padding: 16px 20px;
+    border-radius: 0 3px 3px 0;
+    margin-bottom: 28px;
+  }
+
+  .consent-block p {
+    font-size: 12.5px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  .consent-block strong {
+    color: var(--navy);
+  }
+
+  .checkbox-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 12px;
+    margin-bottom: 16px;
+  }
+
+  .checkbox-row input[type="checkbox"] {
+    width: 18px; height: 18px;
+    margin-top: 1px;
+    accent-color: var(--navy);
+    flex-shrink: 0;
+    cursor: pointer;
+  }
+
+  .checkbox-row label {
+    font-size: 13px;
+    color: var(--text);
+    line-height: 1.6;
+    cursor: pointer;
+    text-transform: none;
+    letter-spacing: 0;
+    font-weight: 400;
+  }
+
+  /* SUBMIT */
+  .form-footer {
+    background: var(--navy);
+    padding: 36px 52px;
+    border-radius: 0 0 4px 4px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 20px;
+  }
+
+  .footer-note {
+    font-size: 12px;
+    color: rgba(255,255,255,0.45);
+    line-height: 1.6;
+    max-width: 280px;
+  }
+
+  .footer-note strong {
+    color: var(--gold-light);
+  }
+
+  .btn-submit {
+    background: var(--gold);
+    color: var(--navy);
+    border: none;
+    padding: 15px 36px;
+    font-family: 'Manrope', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    border-radius: 2px;
+    cursor: pointer;
+    transition: background 0.2s, transform 0.15s;
+    white-space: nowrap;
+    flex-shrink: 0;
+  }
+
+  .btn-submit:hover {
+    background: var(--gold-light);
+    transform: translateY(-1px);
+  }
+
+  .btn-submit:active {
+    transform: translateY(0);
+  }
+
+  /* SUCCESS STATE */
+  .success-overlay {
+    display: none;
+    background: var(--warm-white);
+    padding: 80px 52px;
+    text-align: center;
+    border-left: 1px solid var(--border);
+    border-right: 1px solid var(--border);
+  }
+
+  .success-icon {
+    width: 72px; height: 72px;
+    background: var(--navy);
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    margin: 0 auto 28px;
+    font-size: 30px;
+  }
+
+  .success-overlay h2 {
+    font-family: 'Cormorant Garamond', serif;
+    font-size: 32px;
+    font-weight: 600;
+    color: var(--navy);
+    margin-bottom: 12px;
+  }
+
+  .success-overlay p {
+    font-size: 15px;
+    color: var(--muted);
+    line-height: 1.7;
+  }
+
+  /* RESPONSIVE */
+  @media (max-width: 580px) {
+    .header, .form-body, .form-footer { padding-left: 28px; padding-right: 28px; }
+    .header h1 { font-size: 28px; }
+    .field-row { grid-template-columns: 1fr; }
+    .form-footer { flex-direction: column; text-align: center; }
+    .footer-note { max-width: 100%; }
+    .btn-submit { width: 100%; }
+  }
+</style>
+</head>
+<body>
+<div class="container">
+
+  <!-- HEADER -->
+  <div class="header">
+    <div class="header-badge">ОСББ — Загальні збори 2025</div>
+    <h1>Анкета кандидата<br>до <span>Правління</span></h1>
+    <div class="header-divider"></div>
+    <p class="header-sub">Заповніть усі обов'язкові поля та подайте заяву до [вкажіть дату] включно</p>
+  </div>
+
+  <!-- FORM -->
+  <form id="mainForm" novalidate>
+  <div class="form-body" id="formContent">
+
+    <!-- SECTION 1 -->
+    <div class="section">
+      <div class="section-label">
+        <div class="section-num">1</div>
+        <div class="section-title">Особисті дані</div>
+      </div>
+
+      <div class="field">
+        <label>Прізвище <span class="req">*</span></label>
+        <input type="text" id="last_name" placeholder="Іваненко" required>
+        <div class="error-msg" id="err_last_name">Введіть прізвище</div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>Ім'я <span class="req">*</span></label>
+          <input type="text" id="first_name" placeholder="Іван" required>
+          <div class="error-msg" id="err_first_name">Введіть ім'я</div>
+        </div>
+        <div class="field">
+          <label>По батькові <span class="req">*</span></label>
+          <input type="text" id="middle_name" placeholder="Іванович" required>
+          <div class="error-msg" id="err_middle_name">Введіть по батькові</div>
+        </div>
+      </div>
+
+      <div class="field-row">
+        <div class="field">
+          <label>Номер квартири <span class="req">*</span></label>
+          <input type="number" id="apt" placeholder="42" min="1" required>
+          <div class="error-msg" id="err_apt">Вкажіть номер квартири</div>
+        </div>
+        <div class="field">
+          <label>Телефон <span class="req">*</span></label>
+          <input type="tel" id="phone" placeholder="+38 (0__) ___ __ __" required>
+          <div class="error-msg" id="err_phone">Введіть номер телефону</div>
+        </div>
+      </div>
+
+      <div class="field">
+        <label>Email <span class="hint">(необов'язково)</span></label>
+        <input type="email" id="email" placeholder="ivaniuk@email.com">
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- SECTION 2 -->
+    <div class="section">
+      <div class="section-label">
+        <div class="section-num">2</div>
+        <div class="section-title">Про кандидата</div>
+      </div>
+
+      <div class="field">
+        <label>Освіта та фах <span class="req">*</span></label>
+        <input type="text" id="profession" placeholder="Наприклад: вища юридична, адвокат" required>
+        <div class="error-msg" id="err_profession">Вкажіть освіту / фах</div>
+      </div>
+
+      <div class="field">
+        <label>Коротко про себе <span class="req">*</span> <span class="hint">5–10 речень</span></label>
+        <textarea id="about" placeholder="Розкажіть про досвід, який може бути корисним для управління будинком..." required></textarea>
+        <div class="field-note">Досвід у сферах ЖКГ, юриспруденції, бухгалтерії, будівництві, управлінні — вітається.</div>
+        <div class="error-msg" id="err_about">Заповніть поле</div>
+      </div>
+
+      <div class="field">
+        <label>Чим плануєте бути корисним для ОСББ? <span class="req">*</span></label>
+        <textarea id="motivation" placeholder="Опишіть конкретні ідеї або напрями роботи, якими хочете займатися..." required></textarea>
+        <div class="error-msg" id="err_motivation">Заповніть поле</div>
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- SECTION 3 -->
+    <div class="section">
+      <div class="section-label">
+        <div class="section-num">3</div>
+        <div class="section-title">Фінансові зобов'язання</div>
+      </div>
+
+      <div class="debt-field">
+        <div class="debt-label">Чи є у вас заборгованість по внескам або платежам ОСББ? <span style="color:var(--gold)">*</span></div>
+        <div class="radio-group">
+          <label class="radio-opt">
+            <input type="radio" name="debt" value="no" required> Заборгованості немає
+          </label>
+          <label class="radio-opt">
+            <input type="radio" name="debt" value="yes"> Є заборгованість
+          </label>
+        </div>
+        <div class="error-msg" id="err_debt" style="display:none">Оберіть один варіант</div>
+      </div>
+
+      <div class="field-note" style="margin-top:10px">
+        ⚠️ Наявність заборгованості не є автоматичною підставою для відмови, однак враховується при розгляді кандидатури.
+      </div>
+    </div>
+
+    <hr class="section-divider">
+
+    <!-- SECTION 4 — CONSENT -->
+    <div class="section">
+      <div class="section-label">
+        <div class="section-num">4</div>
+        <div class="section-title">Підтвердження та згода</div>
+      </div>
+
+      <div class="consent-block">
+        <p>Подаючи цю анкету, кандидат підтверджує, що є <strong>власником приміщення</strong> у будинку та <strong>членом ОСББ</strong>, а також погоджується на обробку персональних даних відповідно до ЗУ «Про захист персональних даних» виключно з метою організації виборів до Правління ОСББ.</p>
+      </div>
+
+      <div class="checkbox-row">
+        <input type="checkbox" id="confirm_owner" required>
+        <label for="confirm_owner">Підтверджую, що є власником квартири/приміщення у цьому будинку та членом ОСББ <span style="color:var(--gold)">*</span></label>
+      </div>
+      <div class="error-msg" id="err_confirm_owner">Необхідне підтвердження</div>
+
+      <div class="checkbox-row" style="margin-top:12px">
+        <input type="checkbox" id="confirm_data" required>
+        <label for="confirm_data">Надаю згоду на обробку моїх персональних даних з метою проведення виборів до Правління ОСББ <span style="color:var(--gold)">*</span></label>
+      </div>
+      <div class="error-msg" id="err_confirm_data">Необхідна згода на обробку даних</div>
+
+      <div class="checkbox-row" style="margin-top:12px">
+        <input type="checkbox" id="confirm_list" required>
+        <label for="confirm_list">Погоджуюсь на розміщення мого ПІБ та короткої анкети на інформаційному стенді будинку та в чаті мешканців <span style="color:var(--gold)">*</span></label>
+      </div>
+      <div class="error-msg" id="err_confirm_list">Необхідна згода</div>
+    </div>
+
+  </div><!-- /form-body -->
+
+  <!-- SUCCESS STATE -->
+  <div class="success-overlay" id="successBlock">
+    <div class="success-icon">✓</div>
+    <h2>Анкету подано!</h2>
+    <p>Дякуємо, <strong id="successName"></strong>.<br>
+    Вашу кандидатуру буде включено до списку для розгляду на загальних зборах.<br>
+    З вами зв'яжуться для підтвердження.</p>
+  </div>
+
+  <!-- FOOTER -->
+  <div class="form-footer" id="formFooter">
+    <div class="footer-note">
+      <strong>Строк подачі:</strong> до [вкажіть дату]<br>
+      Питання: [контакт відповідального]
+    </div>
+    <button type="submit" class="btn-submit">Подати заяву →</button>
+  </div>
+
+  </form>
+</div>
+
+<script>
+  const form = document.getElementById('mainForm');
+
+  function required(id) {
+    const el = document.getElementById(id);
+    const err = document.getElementById('err_' + id);
+    if (!el || !el.value.trim()) {
+      if (err) err.style.display = 'block';
+      if (el) el.classList.add('error');
+      return false;
+    }
+    if (err) err.style.display = 'none';
+    if (el) el.classList.remove('error');
+    return true;
+  }
+
+  function validateDebt() {
+    const sel = document.querySelector('input[name="debt"]:checked');
+    const err = document.getElementById('err_debt');
+    if (!sel) { err.style.display = 'block'; return false; }
+    err.style.display = 'none';
+    return true;
+  }
+
+  function validateCheckbox(id) {
+    const el = document.getElementById(id);
+    const err = document.getElementById('err_' + id);
+    if (!el.checked) { err.style.display = 'block'; return false; }
+    err.style.display = 'none';
+    return true;
+  }
+
+  const SCRIPT_URL = 'https://script.google.com/macros/s/AKfycbw22UdweocKqDy384PKClsbednziT8GNI0_jfUvcYV7Aeidq2nw6Sxo2QyqqIkEdwzk_w/exec';
+
+  form.addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const checks = [
+      required('last_name'),
+      required('first_name'),
+      required('middle_name'),
+      required('apt'),
+      required('phone'),
+      required('profession'),
+      required('about'),
+      required('motivation'),
+      validateDebt(),
+      validateCheckbox('confirm_owner'),
+      validateCheckbox('confirm_data'),
+      validateCheckbox('confirm_list'),
+    ];
+
+    if (checks.some(v => !v)) {
+      const firstErr = document.querySelector('.error, [style*="display: block"]');
+      if (firstErr) firstErr.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      return;
+    }
+
+    // Disable button, show loading
+    const btn = document.querySelector('.btn-submit');
+    btn.textContent = 'Надсилання...';
+    btn.disabled = true;
+
+    const payload = {
+      last_name:   document.getElementById('last_name').value.trim(),
+      first_name:  document.getElementById('first_name').value.trim(),
+      middle_name: document.getElementById('middle_name').value.trim(),
+      apt:         document.getElementById('apt').value.trim(),
+      phone:       document.getElementById('phone').value.trim(),
+      email:       document.getElementById('email').value.trim(),
+      profession:  document.getElementById('profession').value.trim(),
+      about:       document.getElementById('about').value.trim(),
+      motivation:  document.getElementById('motivation').value.trim(),
+      debt:        document.querySelector('input[name="debt"]:checked').value === 'no' ? 'Немає' : 'Є',
+      consent:     'Так'
+    };
+
+    fetch(SCRIPT_URL, {
+      method: 'POST',
+      mode: 'no-cors',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify(payload)
+    })
+    .then(() => {
+      const name = payload.first_name + ' ' + payload.last_name;
+      document.getElementById('successName').textContent = name;
+      document.getElementById('formContent').style.display = 'none';
+      document.getElementById('successBlock').style.display = 'block';
+      document.getElementById('formFooter').style.display = 'none';
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    })
+    .catch(() => {
+      btn.textContent = 'Подати заяву →';
+      btn.disabled = false;
+      alert('Помилка відправки. Перевірте інтернет та спробуйте ще раз.');
+    });
+  });
+
+  // Live clear errors
+  ['last_name','first_name','middle_name','apt','phone','profession','about','motivation'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', () => {
+      el.classList.remove('error');
+      const err = document.getElementById('err_' + id);
+      if (err) err.style.display = 'none';
+    });
+  });
+</script>
+</body>
+</html>
